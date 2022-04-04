@@ -15,7 +15,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="password" class="form-label">Password</label>
-                            <input class="form-control" name="password" v-model="password">
+                            <input class="form-control" name="password" type="password" v-model="password">
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary" @click="toLogin">Iniciar Sesion</button>
