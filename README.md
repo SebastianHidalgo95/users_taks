@@ -101,27 +101,27 @@ Las vistas relevantes del desarrollo
 
 ### Login
 
-<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/loginpage.png" width="400"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/loginpage.png" width="700"></a></p>
 
 ### Registro
 
-<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/loginpage.png" width="400"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/loginpage.png" width="700"></a></p>
 
 ### Home - Dashboard
 
-<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/homepage.png" width="400"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/homepage.png" width="700"></a></p>
 
 ### Vista de facturas
 
-<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/facturaspage.png" width="400"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/facturaspage.png" width="700"></a></p>
 
 ### Creacion de nueva factura
 
-<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/createpage.png" width="400"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/createpage.png" width="700"></a></p>
 
 ### Edición de una factura 
 
-<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/updatepage.png" width="400"></a></p>
+<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/updatepage.png" width="700"></a></p>
 
 ## Autor ✒️
 
