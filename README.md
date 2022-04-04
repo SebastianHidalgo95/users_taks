@@ -85,3 +85,13 @@ Los paquetes utilizados para el frontend se instalan utilizando npm o yarn
 ```bash
 npm install
 ```
+
+### Lanzar por primera vez
+Para realizar el primer lanzamiento debe tener su servidor corriendo para el backend, ya sea utilizando composer serve o xampp, tambien debe generar los archivos js mediante el comando
+
+```bash
+npm run dev
+``` 
+## Autor ✒️
+
+* **Johan Sebastian Hidalgo** -  - [SebastianHidalgo95](https://github.com/SebastianHidalgo95)
