@@ -1,5 +1,5 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-<img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo">
+<p align="center"><img width="100" src="https://vuejs.org/images/logo.png" alt="Vue logo"></p>
 
 # Facturación - Development
 
@@ -7,8 +7,6 @@ Sistema para el registro de facturas de compra. Utilizando un login y registro d
 Desarrollo modular 
 
 ## Comenzando 🚀
-
-##Clonar el Repositorio de git
 
 ```bash
 git clone https://github.com/SebastianHidalgo95/test-facturacion.git
@@ -38,7 +36,7 @@ Frontend - vue3 - using compositionAPI
          -vueRouter
          -Vuex
          -toastr
-Backedn - Laravel ^8.75
+Backend - Laravel ^8.75
         - JWT package 'composer require tymon/jwt-auth'
 DB - Mysql
 ```
@@ -51,6 +49,18 @@ cp .env.example .env
 ```
 
 Luego es necesario modificar los valores de las variables de entorno para adecuar la configuración a nuestro entorno de desarrollo, por ejemplo los parámetros de conexión a la base de datos.
+### Configurar la Conexión con la base de datos
+
+Vaya a la raiz de su proyecto y busque el archivo .env debe configurar las variables segun su conexion en el ejemplo utilizando xampp
+La base de datos que debe tener creada en su conexión con mysql debe ser tener el nombre 'testjob' para este caso particular
+```bash
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=testjob
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
 ### Migrar la Base de Datos
 
@@ -61,3 +71,17 @@ php artisan migrate:fresh
 ```
 Los usuarios deben registrarse mediante la opcion de registro accedida desde el login
 
+### Generar la JWT KEY
+Es necesario crear una JWT Key que se almacenara como JWT_SECRET en su env (variables de entorno)
+
+```bash
+php artisan jwt:secret
+```
+
+### Instalar modulos de npm
+
+Los paquetes utilizados para el frontend se instalan utilizando npm o yarn 
+
+```bash
+npm install
+```
