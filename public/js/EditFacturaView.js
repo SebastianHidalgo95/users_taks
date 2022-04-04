@@ -16,6 +16,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
 /* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/index.mjs");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+var _setup$components$pro;
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -31,7 +33,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_setup$components$pro = {
   setup: function setup() {
     var toast = (0,vue_toastification__WEBPACK_IMPORTED_MODULE_1__.useToast)();
     return {
@@ -49,41 +51,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       required: true
     }
   },
-  created: function created() {
-    this.getFactura(this.id);
-  },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('facturas', ['isLoading', 'factura'])),
   data: function data() {
-    return {};
+    return {
+      jh: ''
+    };
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)('facturas', ['getFactura', "updateFactura"])), {}, {
-    update: function update(info, items) {
-      var _this = this;
+  mounted: function mounted() {
+    this.$store.commit('facturas/startLoading');
+    this.getFactura(this.id); // this.$store.commit('facturas/finishLoading')
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('facturas', ['isLoading', 'factura']))
+}, _defineProperty(_setup$components$pro, "data", function data() {
+  return {};
+}), _defineProperty(_setup$components$pro, "methods", _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)('facturas', ['getFactura', "updateFactura"])), {}, {
+  update: function update(info, items) {
+    var _this = this;
 
-      this.$router.push('/dashboard/facturas');
-      var fact = {
-        info: info,
-        items: items
-      };
-      this.updateFactura(fact).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _this.toast.success("Factura editada con Éxito!");
+    this.$router.push('/dashboard/facturas');
+    var fact = {
+      info: info,
+      items: items
+    };
+    this.updateFactura(fact).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _this.toast.success("Factura editada con Éxito!");
 
-              case 1:
-              case "end":
-                return _context.stop();
-            }
+            case 1:
+            case "end":
+              return _context.stop();
           }
-        }, _callee);
-      })))["catch"](function (errr) {
-        _this.toast.error("No fue posible crear la factura!");
-      });
-    }
-  })
-});
+        }
+      }, _callee);
+    })))["catch"](function (errr) {
+      _this.toast.error("No fue posible crear la factura!");
+    });
+  }
+})), _setup$components$pro);
 
 /***/ }),
 

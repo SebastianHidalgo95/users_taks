@@ -130,6 +130,7 @@ export default {
     created() {
         this.$store.commit('facturas/clearFacturas')
         this.$store.commit('facturas/startLoading')
+        this.$store.commit('facturas/cleanFactura')
         this.loadFacturas()
     },
     methods: {

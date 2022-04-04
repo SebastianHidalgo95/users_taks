@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import store from '../store'
 
 const routes = [
     {
@@ -7,6 +6,12 @@ const routes = [
         name: 'login-page',
         meta : {guest: true},
         component: () => import(/* webpackChunkName: "loginPage" */ '../views/LoginView.vue')
+    },
+    {
+        path: '/register',
+        name: 'register-page',
+        meta : {guest: true},
+        component: () => import(/* webpackChunkName: "RegisterPage" */ '../views/RegisterView.vue')
     },
     {
         path: '/dashboard',
@@ -48,6 +53,8 @@ const routes = [
         redirect: '/login',
         meta : {guest: true},      
     },
+    
+    
 ]
 
 
@@ -56,6 +63,7 @@ const router = createRouter({
     routes
 })
 
+// Guar para redirigir a login en caso de no tener token
 router.beforeEach((to, from, next) => {
     if (to.matched.some( (record) => record.meta.requireAuth)) {
         if (!!localStorage.getItem('token')) {
@@ -67,7 +75,9 @@ router.beforeEach((to, from, next) => {
         next();    
     }
 });
-  
+
+//Guard para redigir al dashboard en caso 
+// que acceda al login o register estando loggeado
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.guest)) {
         if (!!localStorage.getItem('token')) {

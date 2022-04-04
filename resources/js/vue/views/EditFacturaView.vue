@@ -40,8 +40,15 @@ export default {
             required: true,
         }
     },  
-    created() {
+    data() {
+        return {
+            jh:''
+        }
+    },
+    mounted() {
+        this.$store.commit('facturas/startLoading')
         this.getFactura( this.id )
+        // this.$store.commit('facturas/finishLoading')
     },
     computed: {
         ...mapState('facturas', ['isLoading', 'factura'])

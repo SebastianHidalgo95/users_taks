@@ -1,12 +1,21 @@
 <template >
-    <div class="container w-80 my-3 px-5">
+    <div v-if="isLoading" 
+        class="row justify-content-md-center">
+        <div class="col-3 alert-info text-center mt-5">
+            Espere por favor ....
+            <h3 class="mt-2">
+                <i class="fa fa-spin fa-sync"></i>
+            </h3>
+        </div>
+    </div>
+    <div v-else class="container w-80 my-3 px-5">
         <div class="d-flex">
             <div class="mr-auto">
                 <h1>Crear Factura</h1>
             </div> 
         </div>
         <FormFact 
-        @complete-form="create" 
+            @complete-form="create" 
             :id="id" 
             actionform='crear'
         />
@@ -25,51 +34,16 @@ export default {
       const toast = useToast();
       return { toast }
     },
-    props:{
-
-    },
     data() {
-        
         return {
-            
-            id:'',
-            count: 1,
-            fecha: '',
-            nameComprador: '',
-            nameEmisor: '',
-            nitComprador: '',
-            nitEmisor: '',
-            subtotal: '',
-            items: [
-                {
-                key: 0,
-                item: "",
-                description: "",
-                cantidad: "",
-                unitVal: "",
-                },    
-            ],
-            
+            id :'',
         }
     },
     computed:{
-        subTotal: function() {
-            const subTotal = this.getSubTotal();
-            const result = numeral(subTotal).format("$ 0,00.00");
-            return result;
-        },
-        iva: function(){
-            const iva = this.getSubTotal()*0.19
-            const result = numeral(iva).format("$ 0,00.00");
-            return result
-        },
-        total: function() {
-            const total = this.getSubTotal() + this.getSubTotal()*0.19;
-            const result = numeral(total).format("$ 0,00.00");
-            return result;
-        }
+        ...mapState('facturas', ['isLoading']),
     },
     created() {
+        this.$store.commit('facturas/startLoading')
         this.getLastFactura();
         this.$store.commit('facturas/cleanFactura')
     },
@@ -78,7 +52,8 @@ export default {
         async getLastFactura (){
             await axios({url:'get_lastfactura',method:'POST'})
             .then(async({ data }) =>{
-                this.id = data
+                this.id = data.toString()
+                this.$store.commit('facturas/finishLoading')
             })
         },
         create( info, items ){
@@ -99,23 +74,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-li{
-    list-style-type: none;
-}
-.form-group {
-    margin-block: 10px;
-}
+
+
 .font{
     font-weight: bold;
 }
-.border-solid {
-    border-bottom: 3px solid #8a8686b0;
-}
-.container-factura {
-    width: 95%;
-}
-tbody {
-    border-top: none !important;
-}
+
 
 </style>

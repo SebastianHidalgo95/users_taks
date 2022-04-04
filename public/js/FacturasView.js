@@ -36,6 +36,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   created: function created() {
     this.$store.commit('facturas/clearFacturas');
     this.$store.commit('facturas/startLoading');
+    this.$store.commit('facturas/cleanFactura');
     this.loadFacturas();
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('facturas', ['loadFacturas'])), {}, {

@@ -1,4 +1,5 @@
 <template>
+<!-- Go to router -->
     <router-view></router-view>
 </template>
 <script>

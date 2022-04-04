@@ -41,13 +41,13 @@ export const createFactura= ({commit}, fact )=> {
     })
 }
 export const getFactura= async ({commit} , id) => {
+    commit('startLoading')
     const { data } = await axios({
         url:'get_factura',
         method:'POST', 
         data: {id}
     })
     const factura = data
-    commit('finishLoading')
     commit('setFactura', factura)
     return factura
 }

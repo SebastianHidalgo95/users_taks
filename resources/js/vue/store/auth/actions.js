@@ -31,6 +31,26 @@ export const logout =  ({commit}) =>{
       resolve()
     })
 }
+export const register = ({commit}, user)=> {
+    return new Promise((resolve, reject) => {
+      commit('authRequest')
+      axios({url: 'register', data: user, method: 'POST' })
+      .then(resp => {
+        const token = 'Bearer '+resp.data.access_token
+        const user = resp.data.user
+        localStorage.setItem('token', token)
+        axios.defaults.headers.common['Authorization'] = token
+        commit('authSuccess', token, user)
+        commit('handleError', '')
+        resolve(resp)
+      })
+      .catch(error => {
+        localStorage.removeItem('token')
+        reject(error)
+      })
+    })
+}
+
 export const getUser= ({commit, dispatch}) => {
     return new Promise((resolve, reject) => {
         axios({url:'user',method:'GET'})

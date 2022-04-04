@@ -22697,7 +22697,9 @@ __webpack_require__.r(__webpack_exports__);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_router_view);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Go to router "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)], 2112
+  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
+  );
 }
 
 /***/ }),
@@ -22725,15 +22727,22 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
+ //Libreria para Alertas
 
+ //Configuracin AXIOS
+//base.url debe ser definida segun el servidor local a usar
 
 (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.withCredentials) = true;
-(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = 'http://localhost/api';
+(axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.baseURL) = 'http://localhost/api'; //Intenta ver si hay alguna token en localstorage
+
 var token = localStorage.getItem('token');
 
 if (token) {
+  //En caso de token el header se asigna a la token guardada
   (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.headers.common.Authorization) = token;
-}
+} //Manejo de errores y excepciones con AXIOS
+//En caso de token expired logout
+
 
 axios__WEBPACK_IMPORTED_MODULE_1___default().interceptors.response.use(undefined, function (error) {
   console.log('Error from http request');
@@ -22805,9 +22814,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/vue/store/index.js");
-
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 
 var routes = [{
   path: '/login',
@@ -22817,6 +22824,15 @@ var routes = [{
   },
   component: function component() {
     return __webpack_require__.e(/*! import() | loginPage */ "loginPage").then(__webpack_require__.bind(__webpack_require__, /*! ../views/LoginView.vue */ "./resources/js/vue/views/LoginView.vue"));
+  }
+}, {
+  path: '/register',
+  name: 'register-page',
+  meta: {
+    guest: true
+  },
+  component: function component() {
+    return __webpack_require__.e(/*! import() | RegisterPage */ "RegisterPage").then(__webpack_require__.bind(__webpack_require__, /*! ../views/RegisterView.vue */ "./resources/js/vue/views/RegisterView.vue"));
   }
 }, {
   path: '/dashboard',
@@ -22864,10 +22880,11 @@ var routes = [{
     guest: true
   }
 }];
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createWebHashHistory)(),
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.createWebHashHistory)(),
   routes: routes
-});
+}); // Guar para redirigir a login en caso de no tener token
+
 router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.requireAuth;
@@ -22881,7 +22898,9 @@ router.beforeEach(function (to, from, next) {
   } else {
     next();
   }
-});
+}); //Guard para redigir al dashboard en caso 
+// que acceda al login o register estando loggeado
+
 router.beforeEach(function (to, from, next) {
   if (to.matched.some(function (record) {
     return record.meta.guest;
@@ -22911,7 +22930,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getUser": () => (/* binding */ getUser),
 /* harmony export */   "login": () => (/* binding */ login),
-/* harmony export */   "logout": () => (/* binding */ logout)
+/* harmony export */   "logout": () => (/* binding */ logout),
+/* harmony export */   "register": () => (/* binding */ register)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
@@ -22977,15 +22997,37 @@ var logout = function logout(_ref3) {
     resolve();
   });
 };
-var getUser = function getUser(_ref4) {
-  var commit = _ref4.commit,
-      dispatch = _ref4.dispatch;
+var register = function register(_ref4, user) {
+  var commit = _ref4.commit;
+  return new Promise(function (resolve, reject) {
+    commit('authRequest');
+    axios__WEBPACK_IMPORTED_MODULE_1___default()({
+      url: 'register',
+      data: user,
+      method: 'POST'
+    }).then(function (resp) {
+      var token = 'Bearer ' + resp.data.access_token;
+      var user = resp.data.user;
+      localStorage.setItem('token', token);
+      (axios__WEBPACK_IMPORTED_MODULE_1___default().defaults.headers.common.Authorization) = token;
+      commit('authSuccess', token, user);
+      commit('handleError', '');
+      resolve(resp);
+    })["catch"](function (error) {
+      localStorage.removeItem('token');
+      reject(error);
+    });
+  });
+};
+var getUser = function getUser(_ref5) {
+  var commit = _ref5.commit,
+      dispatch = _ref5.dispatch;
   return new Promise(function (resolve, reject) {
     axios__WEBPACK_IMPORTED_MODULE_1___default()({
       url: 'user',
       method: 'GET'
     }).then( /*#__PURE__*/function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(res) {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(res) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
@@ -23017,7 +23059,7 @@ var getUser = function getUser(_ref4) {
       }));
 
       return function (_x3) {
-        return _ref5.apply(this, arguments);
+        return _ref6.apply(this, arguments);
       };
     }())["catch"](function (err) {
       console.log(err);
@@ -23261,7 +23303,8 @@ var getFactura = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             commit = _ref5.commit;
-            _context2.next = 3;
+            commit('startLoading');
+            _context2.next = 4;
             return axios__WEBPACK_IMPORTED_MODULE_1___default()({
               url: 'get_factura',
               method: 'POST',
@@ -23270,11 +23313,10 @@ var getFactura = /*#__PURE__*/function () {
               }
             });
 
-          case 3:
+          case 4:
             _yield$axios2 = _context2.sent;
             data = _yield$axios2.data;
             factura = data;
-            commit('finishLoading');
             commit('setFactura', factura);
             return _context2.abrupt("return", factura);
 
@@ -23488,6 +23530,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _facturas__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./facturas */ "./resources/js/vue/store/facturas/index.js");
 
 
+ // El store contine 2 modulos auth para registro y login, 
+// facturas para manejo de las facturas
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,vuex__WEBPACK_IMPORTED_MODULE_2__.createStore)({
   modules: {
@@ -53695,7 +53739,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"loginPage":1,"dashboardLayout":1,"FacturasView":1,"CreateFacturaView":1,"EditFacturaView":1,"resources_js_vue_components_Navbar_vue":1,"resources_js_vue_components_FormFact_vue":1,"resources_js_vue_components_Fab_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"loginPage":1,"RegisterPage":1,"dashboardLayout":1,"FacturasView":1,"CreateFacturaView":1,"EditFacturaView":1,"resources_js_vue_components_Navbar_vue":1,"resources_js_vue_components_FormFact_vue":1,"resources_js_vue_components_Fab_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

@@ -11,35 +11,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/index.mjs");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: function setup() {
+    var toast = (0,vue_toastification__WEBPACK_IMPORTED_MODULE_0__.useToast)();
+    return {
+      toast: toast
+    };
+  },
   data: function data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: {
+        state: false,
+        msg: ''
+      }
     };
   },
-  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)('auth', ["login"])), {}, {
+  methods: {
     toLogin: function toLogin() {
       var _this = this;
 
-      this.$store.dispatch('auth/login', {
-        email: this.email,
-        password: this.password
-      }).then(function () {
-        return _this.$router.push('/dashboard/home');
-      })["catch"](function (err) {
-        return console.log(err);
-      });
+      this.validator();
+
+      if (this.error.state) {
+        // En caso de error del validator genera alerta con msg
+        this.toast.error("".concat(this.error.msg));
+      } else {
+        // Lanza accion del store, retorna promesa 
+        this.$store.dispatch('auth/login', {
+          email: this.email,
+          password: this.password
+        }).then(function () {
+          // Redireccionamiento y mensaje de exito
+          _this.$router.push('/dashboard/home');
+
+          _this.toast.success('Bienvenid@');
+        })["catch"](function (err) {
+          return console.log(err);
+        });
+      }
+    },
+    // Actualiza el valor de this.error en caso de error
+    validator: function validator() {
+      if (!this.email || !this.password) {
+        this.error = {
+          state: true,
+          msg: 'Por favor complete toda la infomación'
+        };
+      } else if (!this.validar_email(this.email)) {
+        this.error = {
+          state: true,
+          msg: 'Por favor ingrese un email válido'
+        };
+      } else {
+        this.error = {
+          state: false,
+          msg: ''
+        };
+      }
+    },
+    // retorna false en caso de email válido
+    validar_email: function validar_email(email) {
+      var regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return regex.test(String(email).toLowerCase()) ? true : false;
     }
-  })
+  }
 });
 
 /***/ }),
@@ -100,7 +140,7 @@ var _hoisted_6 = {
 var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
     "class": "fw-bold text-center my-5"
-  }, "Bienvenido", -1
+  }, "Bienvenid@", -1
   /* HOISTED */
   );
 });
@@ -134,10 +174,30 @@ var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_12 = {
   "class": "d-grid"
 };
+var _hoisted_13 = {
+  "class": "my-3"
+};
+var _hoisted_14 = {
+  "class": "row text-center my-2"
+};
 
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"my-3\" data-v-580bb596><div class=\"row text-center my-2\" data-v-580bb596><span data-v-580bb596>No tienes Cuenta? <a href=\"#\" data-v-580bb596>Registrate</a></span></div><div class=\"row text-center my-2\" data-v-580bb596><span data-v-580bb596>Recuperar <a href=\"#\" data-v-580bb596>Password</a></span></div></div>", 1);
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("No tienes Cuenta? ");
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Registrate ");
+
+var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "row text-center my-2"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Recuperar "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "#"
+  }, "Password")])], -1
+  /* HOISTED */
+  );
+});
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "form-control",
     name: "email",
@@ -159,7 +219,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.toLogin && $options.toLogin.apply($options, arguments);
     })
-  }, "Iniciar Sesion")]), _hoisted_13])])])]);
+  }, "Iniciar Sesion")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: {
+      name: 'register-page'
+    }
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_16];
+    }),
+    _: 1
+    /* STABLE */
+
+  })])]), _hoisted_17])])])])]);
 }
 
 /***/ }),

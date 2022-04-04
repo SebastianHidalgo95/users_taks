@@ -7,35 +7,33 @@
                     <img class="img-fluid h-100 p-0 m-0" src="../../../assets/login.png"/>
                 </div>
                 <div class="col bg-white p-5 rounded-end">
-                    <h2 class="fw-bold text-center my-5">Bienvenid@</h2>
-                    
+                    <h2 class="fw-bold text-center my-3">Registro</h2>
+                        <div class="mb-4">
+                            <label for="name" class="form-label">Nombre</label>
+                            <input class="form-control" name="name" v-model="name">
+                        </div>
                         <div class="mb-4">
                             <label for="email" class="form-label">Correo Electronico</label>
                             <input class="form-control" name="email" v-model="email">
                         </div>
                         <div class="mb-4">
                             <label for="password" class="form-label">Password</label>
-                            <input class="form-control" name="password" v-model="password">
+                            <input class="form-control" name="password" type="password" v-model="password">
                         </div>
                         <div class="d-grid">
-                            <button class="btn btn-primary" @click="toLogin">Iniciar Sesion</button>
+                            <button class="btn btn-primary" @click="toRegister">Registrar</button>
                         </div>
                         <div class="my-3">
                             <div class="row text-center my-2">
-                                <span>No tienes Cuenta? 
+                                <span>Ya tienes Cuenta? 
                                     <router-link 
-                                        :to="{ name: 'register-page'}"
-                                        >Registrate
+                                        :to="{ name: 'login-page'}"
+                                        >Login
                                     </router-link>
                                 </span>
                             </div>
-                            <div class="row text-center my-2">
-                                <span>Recuperar <a href="#">Password</a>
-                                
-                                </span>
-                            </div>
+                            
                         </div>
-                    
                 </div>
             </div>
         </div>
@@ -51,7 +49,7 @@ export default {
     },
     data() {
         return {
-
+            name: '',
             email: '',
             password: '',
             error: {
@@ -61,26 +59,33 @@ export default {
         }
     },
     methods: {
+        ...mapActions('auth', ["register"]),
         
-        toLogin (){
+        toRegister(){
             this.validator()
             if(this.error.state){
                 // En caso de error del validator genera alerta con msg
                 this.toast.error(`${this.error.msg}`) 
             } else{
-                // Lanza accion del store, retorna promesa 
-                this.$store.dispatch('auth/login', {email: this.email, password: this.password})
+                // Lanza accion del store module[auth], retorna promesa 
+                this.$store.dispatch('auth/register', {
+                    name: this.name,
+                    email: this.email, 
+                    password: this.password,
+                    password_confirmation: this.password,
+                    }
+                )
                     .then(() => {
                         // Redireccionamiento y mensaje de exito
                         this.$router.push('/dashboard/home')
-                        this.toast.success('Bienvenid@')
-                        })
+                        this.toast.success('Usuario Registrado')
+                    })
                     .catch(err => console.log(err))
-            }    
+            } 
         },
         // Actualiza el valor de this.error en caso de error
         validator(){
-            if (!this.email || !this.password ){
+            if (!this.name || !this.email || !this.password ){
                 this.error= { state: true , msg: 'Por favor complete toda la infomación'}  
             } else if(!this.validar_email(this.email)){
                 this.error= { state: true , msg: 'Por favor ingrese un email válido'}  
@@ -103,12 +108,5 @@ export default {
     background: linear-gradient(to right, #091ebba8, #580451)
 }
 
-// .bg {
-//     background-image: url(../../../assets/login.png);
-//     background-position: center center;
-// }
-// #img-log {
-//     transform: scale(0.3);
-// }
 
 </style>

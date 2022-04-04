@@ -17,6 +17,11 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       required: true
     }
+  },
+  methods: {
+    cancelAction: function cancelAction() {
+      this.$router.push('/dashboard/facturas');
+    }
   }
 });
 
@@ -48,14 +53,21 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
 });
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    "class": "btn btn-primary fs-4",
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "btn btn-primary fs-5 action text-capitalize",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return _ctx.$emit('launchAction');
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.action) + " ", 1
   /* TEXT */
-  ), _hoisted_1]);
+  ), _hoisted_1]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "btn btn-danger fs-5 cancel",
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.cancelAction && $options.cancelAction.apply($options, arguments);
+    })
+  }, " Cancelar ")], 64
+  /* STABLE_FRAGMENT */
+  );
 }
 
 /***/ }),
@@ -76,7 +88,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "button[data-v-289ae395] {\n  bottom: 40px;\n  position: fixed;\n  right: 50px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".action[data-v-289ae395] {\n  bottom: 40px;\n  position: fixed;\n  right: 150px;\n}\n.cancel[data-v-289ae395] {\n  bottom: 40px;\n  position: fixed;\n  right: 50px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

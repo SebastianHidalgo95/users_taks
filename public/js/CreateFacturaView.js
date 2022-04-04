@@ -43,44 +43,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       toast: toast
     };
   },
-  props: {},
   data: function data() {
     return {
-      id: '',
-      count: 1,
-      fecha: '',
-      nameComprador: '',
-      nameEmisor: '',
-      nitComprador: '',
-      nitEmisor: '',
-      subtotal: '',
-      items: [{
-        key: 0,
-        item: "",
-        description: "",
-        cantidad: "",
-        unitVal: ""
-      }]
+      id: ''
     };
   },
-  computed: {
-    subTotal: function subTotal() {
-      var subTotal = this.getSubTotal();
-      var result = numeral(subTotal).format("$ 0,00.00");
-      return result;
-    },
-    iva: function iva() {
-      var iva = this.getSubTotal() * 0.19;
-      var result = numeral(iva).format("$ 0,00.00");
-      return result;
-    },
-    total: function total() {
-      var total = this.getSubTotal() + this.getSubTotal() * 0.19;
-      var result = numeral(total).format("$ 0,00.00");
-      return result;
-    }
-  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('facturas', ['isLoading'])),
   created: function created() {
+    this.$store.commit('facturas/startLoading');
     this.getLastFactura();
     this.$store.commit('facturas/cleanFactura');
   },
@@ -105,9 +75,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                         switch (_context.prev = _context.next) {
                           case 0:
                             data = _ref.data;
-                            _this.id = data;
+                            _this.id = data.toString();
 
-                          case 2:
+                            _this.$store.commit('facturas/finishLoading');
+
+                          case 3:
                           case "end":
                             return _context.stop();
                         }
@@ -176,10 +148,29 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "container w-80 my-3 px-5"
+  key: 0,
+  "class": "row justify-content-md-center"
 };
 
 var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "col-3 alert-info text-center mt-5"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Espere por favor .... "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+    "class": "mt-2"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+    "class": "fa fa-spin fa-sync"
+  })])], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_3 = [_hoisted_2];
+var _hoisted_4 = {
+  key: 1,
+  "class": "container w-80 my-3 px-5"
+};
+
+var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "d-flex"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -192,13 +183,13 @@ var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_FormFact = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FormFact");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormFact, {
+  return _ctx.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _hoisted_3)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormFact, {
     onCompleteForm: $options.create,
     id: $data.id,
     actionform: "crear"
   }, null, 8
   /* PROPS */
-  , ["onCompleteForm", "id"])]);
+  , ["onCompleteForm", "id"])]));
 }
 
 /***/ }),
@@ -219,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "li[data-v-30e5be09] {\n  list-style-type: none;\n}\n.form-group[data-v-30e5be09] {\n  margin-block: 10px;\n}\n.font[data-v-30e5be09] {\n  font-weight: bold;\n}\n.border-solid[data-v-30e5be09] {\n  border-bottom: 3px solid #8a8686b0;\n}\n.container-factura[data-v-30e5be09] {\n  width: 95%;\n}\ntbody[data-v-30e5be09] {\n  border-top: none !important;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".font[data-v-30e5be09] {\n  font-weight: bold;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -31,14 +31,25 @@ class FacturaController extends Controller
         return response()->json($factura);
     }
     public function getLastFactura () {
-        $factura = Factura::All();
-        if (!!$factura) {
-            return response()->json('1');
-        }
-        else {
+        try {
             $factura_id = Factura::All()->last()->id_factura;
             return response()->json($factura_id+1);
+        } catch (\Throwable $th) {
+            return response()->json('1');
         }
+        
+        // if($factura_id){
+        //     dd('hola');
+        // } else {
+        //     dd('ño');
+        // }
+        // if (!$factura) {
+        //     return response()->json('1');
+        // }
+        // else {
+        //     $factura_id = Factura::All()->last()->id_factura;
+        //     return response()->json($factura_id+1);
+        // }
     }
     public function createFactura (Request $request) {
         $factura = new Factura();
