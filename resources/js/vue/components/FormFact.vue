@@ -151,6 +151,7 @@ export default {
       return { toast }
     },
     created() {
+        
         if( this.actionform == 'editar'){
             this.count = this.factura.lastKey + 1
         }

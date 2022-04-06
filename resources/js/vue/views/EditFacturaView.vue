@@ -26,7 +26,6 @@
 import { defineAsyncComponent } from '@vue/runtime-core';
 import { useToast } from "vue-toastification"
 import { mapActions, mapState } from 'vuex';
-
 export default {
     emits: ["updatedcount"],
     // setup(_,{ emit }) {
