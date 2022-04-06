@@ -99,7 +99,6 @@ class FacturaController extends Controller
                 $itemSave->unit_val = $item['unit_val'];
                 $itemSave->key = $item['key'];
                 $itemSave->save();
-                
             } else {
                 $itemSave = new Item();
                 $itemSave->item_number = $item['item_number'];
