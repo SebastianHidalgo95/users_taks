@@ -34,6 +34,11 @@ __webpack_require__.r(__webpack_exports__);
       toast: toast
     };
   },
+  created: function created() {
+    if (this.actionform == 'editar') {
+      this.count = this.factura.lastKey + 1;
+    }
+  },
   components: {
     Fab: (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_1__.defineAsyncComponent)(function () {
       return __webpack_require__.e(/*! import() */ "resources_js_vue_components_Fab_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/Fab.vue */ "./resources/js/vue/components/Fab.vue"));
@@ -312,7 +317,6 @@ var _hoisted_37 = {
   "class": "form-group mx-1 text-center"
 };
 var _hoisted_38 = {
-  key: 0,
   "class": "d-flex container-factura mx-auto p-3 border-solid"
 };
 
@@ -425,12 +429,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])]), $props.actionform == 'crear' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-primary",
     onClick: _cache[5] || (_cache[5] = function () {
       return $options.handleAdd && $options.handleAdd.apply($options, arguments);
     })
-  }, _hoisted_41)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [_hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Subtotal :" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.subTotal), 1
+  }, _hoisted_41)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [_hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Subtotal :" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.subTotal), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "IVA(19%):" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.iva), 1
   /* TEXT */

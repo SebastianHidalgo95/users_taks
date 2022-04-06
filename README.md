@@ -32,7 +32,7 @@ composer install
 _Que cosas necesitas para instalar el software y como instalarlas_
 
 ```
-Frontend - vue3 - using compositionAPI
+Frontend - vue3 - using optionsAPI
          -vueRouter
          -Vuex
          -toastr

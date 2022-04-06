@@ -89,14 +89,28 @@ class FacturaController extends Controller
         $factura->total =$request->info['total'];
         $factura->save();
         foreach ($request->items as $item) {
-            $itemSave = Item::where('id_item','=',$item['id_item'])->first();
-            $itemSave->item_number = $item['item_number'];
-            $itemSave->cantidad = $item['cantidad'];
-            $itemSave->factura_id = $factura->id_factura;
-            $itemSave->description = $item['description'];
-            $itemSave->unit_val = $item['unit_val'];
-            $itemSave->key = $item['key'];
-            $itemSave->save();
+            
+            if(isset($item['id_item'])) {
+                $itemSave = Item::where('id_item','=',$item['id_item'])->first();
+                $itemSave->item_number = $item['item_number'];
+                $itemSave->cantidad = $item['cantidad'];
+                $itemSave->factura_id = $factura->id_factura;
+                $itemSave->description = $item['description'];
+                $itemSave->unit_val = $item['unit_val'];
+                $itemSave->key = $item['key'];
+                $itemSave->save();
+                
+            } else {
+                $itemSave = new Item();
+                $itemSave->item_number = $item['item_number'];
+                $itemSave->cantidad = $item['cantidad'];
+                $itemSave->factura_id = $factura->id_factura;
+                $itemSave->description = $item['description'];
+                $itemSave->unit_val = $item['unit_val'];
+                $itemSave->key = $item['key'];
+                $itemSave->save();
+            }
+            
         }
         return response()->json(true);
     }

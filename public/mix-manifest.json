@@ -1,10 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/loginPage.js": "/js/loginPage.js",
+    "/js/RegisterPage.js": "/js/RegisterPage.js",
     "/js/dashboardLayout.js": "/js/dashboardLayout.js",
     "/js/FacturasView.js": "/js/FacturasView.js",
     "/js/CreateFacturaView.js": "/js/CreateFacturaView.js",
     "/js/EditFacturaView.js": "/js/EditFacturaView.js",
-    "/css/app.css": "/css/app.css",
-    "/js/RegisterPage.js": "/js/RegisterPage.js"
+    "/css/app.css": "/css/app.css"
 }

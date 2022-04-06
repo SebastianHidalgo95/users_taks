@@ -16,7 +16,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vue_runtime_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @vue/runtime-core */ "./node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js");
 /* harmony import */ var vue_toastification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-toastification */ "./node_modules/vue-toastification/dist/index.mjs");
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
-var _setup$components$pro;
+var _emits$setup$componen;
 
 
 
@@ -33,7 +33,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_setup$components$pro = {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_emits$setup$componen = {
+  emits: ["updatedcount"],
+  // setup(_,{ emit }) {
+  // },
   setup: function setup() {
     var toast = (0,vue_toastification__WEBPACK_IMPORTED_MODULE_1__.useToast)();
     return {
@@ -56,14 +59,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       jh: ''
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     this.$store.commit('facturas/startLoading');
     this.getFactura(this.id); // this.$store.commit('facturas/finishLoading')
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('facturas', ['isLoading', 'factura']))
-}, _defineProperty(_setup$components$pro, "data", function data() {
-  return {};
-}), _defineProperty(_setup$components$pro, "methods", _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)('facturas', ['getFactura', "updateFactura"])), {}, {
+}, _defineProperty(_emits$setup$componen, "data", function data() {
+  return {
+    key: 0
+  };
+}), _defineProperty(_emits$setup$componen, "methods", _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)('facturas', ['getFactura', "updateFactura"])), {}, {
   update: function update(info, items) {
     var _this = this;
 
@@ -88,8 +93,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     })))["catch"](function (errr) {
       _this.toast.error("No fue posible crear la factura!");
     });
-  }
-})), _setup$components$pro);
+  },
+  getLastKey: function getLastKey() {}
+})), _emits$setup$componen);
 
 /***/ }),
 

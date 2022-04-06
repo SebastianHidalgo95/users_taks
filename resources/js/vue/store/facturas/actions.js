@@ -48,6 +48,8 @@ export const getFactura= async ({commit} , id) => {
         data: {id}
     })
     const factura = data
+    data.lastKey = data.items[data.items.length -1].key
+    // data.lastKey = data.items.length
     commit('setFactura', factura)
     return factura
 }

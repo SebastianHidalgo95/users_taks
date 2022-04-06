@@ -18,6 +18,7 @@
             @complete-form="update" 
             :id="this.$route.params.id" 
             actionform="editar"
+            
         />
     </div>
 </template>
@@ -27,6 +28,9 @@ import { useToast } from "vue-toastification"
 import { mapActions, mapState } from 'vuex';
 
 export default {
+    emits: ["updatedcount"],
+    // setup(_,{ emit }) {
+    // },
     setup() {
       const toast = useToast();
       return { toast }
@@ -45,9 +49,10 @@ export default {
             jh:''
         }
     },
-    mounted() {
+    created() {
         this.$store.commit('facturas/startLoading')
         this.getFactura( this.id )
+        
         // this.$store.commit('facturas/finishLoading')
     },
     computed: {
@@ -55,7 +60,7 @@ export default {
     },
     data() {
         return {
-            
+            key: 0,
         }
     },
 
@@ -75,6 +80,9 @@ export default {
                 .catch((errr)=>{
                     this.toast.error("No fue posible crear la factura!")
             })                  
+        },
+        getLastKey(){
+            
         }
     },
 }

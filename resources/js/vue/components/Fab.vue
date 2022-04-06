@@ -1,5 +1,5 @@
 <template >
-    <button class="btn btn-primary fs-5 action text-capitalize" @click="$emit('launchAction')">
+    <button class="btn btn-primary fs-5 action text-capitalize" @click="launch">
         {{ action }}
         <i class="fa fa-lg fa-cloud-upload" 
         >
@@ -11,6 +11,7 @@
 </template>
 <script>
 export default { 
+    emits: ["launchAction"],
     props: {
         action: {
             type: String,
@@ -20,6 +21,9 @@ export default {
     methods: {
         cancelAction(){
             this.$router.push('/dashboard/facturas')
+        }, 
+        launch(){
+            this.$emit('launchAction')
         }
     },
 

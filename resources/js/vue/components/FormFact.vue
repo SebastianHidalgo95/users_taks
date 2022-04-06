@@ -105,7 +105,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div v-if="actionform=='crear'" class="d-flex container-factura mx-auto p-3 border-solid">
+                    <div  class="d-flex container-factura mx-auto p-3 border-solid">
                         <button class="btn btn-primary" 
                             @click="handleAdd">
                                 <i class="fa fa-plus"></i> 
@@ -113,6 +113,7 @@
                         </button>
                     </div>
                 </div>
+
             </div>  
             <div class="d-flex container-factura mx-auto">
                 <div class="ms-auto col-4 text-start ">
@@ -148,6 +149,12 @@ export default {
     setup() {
       const toast = useToast();
       return { toast }
+    },
+    created() {
+        if( this.actionform == 'editar'){
+            this.count = this.factura.lastKey + 1
+        }
+        
     },
     components: {
         Fab: defineAsyncComponent( () => import('../components/Fab.vue')),

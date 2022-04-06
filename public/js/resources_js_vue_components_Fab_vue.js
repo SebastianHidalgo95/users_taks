@@ -12,6 +12,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  emits: ["launchAction"],
   props: {
     action: {
       type: String,
@@ -21,6 +22,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     cancelAction: function cancelAction() {
       this.$router.push('/dashboard/facturas');
+    },
+    launch: function launch() {
+      this.$emit('launchAction');
     }
   }
 });
@@ -55,8 +59,8 @@ var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "btn btn-primary fs-5 action text-capitalize",
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.$emit('launchAction');
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.launch && $options.launch.apply($options, arguments);
     })
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.action) + " ", 1
   /* TEXT */

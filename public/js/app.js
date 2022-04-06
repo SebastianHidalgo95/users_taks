@@ -23317,10 +23317,12 @@ var getFactura = /*#__PURE__*/function () {
             _yield$axios2 = _context2.sent;
             data = _yield$axios2.data;
             factura = data;
+            data.lastKey = data.items[data.items.length - 1].key; // data.lastKey = data.items.length
+
             commit('setFactura', factura);
             return _context2.abrupt("return", factura);
 
-          case 9:
+          case 10:
           case "end":
             return _context2.stop();
         }
