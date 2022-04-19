@@ -50,79 +50,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapState)('facturas', ['isLoading'])),
   created: function created() {
-    this.$store.commit('facturas/startLoading');
-    this.getLastFactura();
     this.$store.commit('facturas/cleanFactura');
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapActions)('facturas', ["createFactura"])), {}, {
-    getLastFactura: function getLastFactura() {
-      var _this = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return axios({
-                  url: 'get_lastfactura',
-                  method: 'POST'
-                }).then( /*#__PURE__*/function () {
-                  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(_ref) {
-                    var data;
-                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-                      while (1) {
-                        switch (_context.prev = _context.next) {
-                          case 0:
-                            data = _ref.data;
-                            _this.id = data.toString();
-
-                            _this.$store.commit('facturas/finishLoading');
-
-                          case 3:
-                          case "end":
-                            return _context.stop();
-                        }
-                      }
-                    }, _callee);
-                  }));
-
-                  return function (_x) {
-                    return _ref2.apply(this, arguments);
-                  };
-                }());
-
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
-    },
     create: function create(info, items) {
-      var _this2 = this;
+      var _this = this;
 
       this.$router.push('/dashboard/facturas');
       var fact = {
         info: info,
         items: items
       };
-      this.createFactura(fact).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      this.createFactura(fact).then( /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context.prev = _context.next) {
               case 0:
-                _this2.toast.success("Factura creada con Éxito!");
+                _this.toast.success("Factura creada con Éxito!");
 
               case 1:
               case "end":
-                return _context3.stop();
+                return _context.stop();
             }
           }
-        }, _callee3);
+        }, _callee);
       })))["catch"](function (errr) {
-        _this2.toast.error("No fue posible crear la factura!");
+        _this.toast.error("No fue posible crear la factura!");
       });
     }
   })
@@ -175,7 +128,7 @@ var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
     "class": "d-flex"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "mr-auto"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Crear Factura")])], -1
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Nueva Tarea")])], -1
   /* HOISTED */
   );
 });
@@ -259,7 +212,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CreateFacturaView_vue_vue_type_template_id_30e5be09_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateFacturaView.vue?vue&type=template&id=30e5be09&scoped=true */ "./resources/js/vue/views/CreateFacturaView.vue?vue&type=template&id=30e5be09&scoped=true");
 /* harmony import */ var _CreateFacturaView_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateFacturaView.vue?vue&type=script&lang=js */ "./resources/js/vue/views/CreateFacturaView.vue?vue&type=script&lang=js");
 /* harmony import */ var _CreateFacturaView_vue_vue_type_style_index_0_id_30e5be09_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CreateFacturaView.vue?vue&type=style&index=0&id=30e5be09&lang=scss&scoped=true */ "./resources/js/vue/views/CreateFacturaView.vue?vue&type=style&index=0&id=30e5be09&lang=scss&scoped=true");
-/* harmony import */ var C_xampp_htdocs_test_job_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_xampp_htdocs_user_tasks_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -267,7 +220,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_test_job_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_CreateFacturaView_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_CreateFacturaView_vue_vue_type_template_id_30e5be09_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-30e5be09"],['__file',"resources/js/vue/views/CreateFacturaView.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_xampp_htdocs_user_tasks_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_CreateFacturaView_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_CreateFacturaView_vue_vue_type_template_id_30e5be09_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-30e5be09"],['__file',"resources/js/vue/views/CreateFacturaView.vue"]])
 /* hot reload */
 if (false) {}
 

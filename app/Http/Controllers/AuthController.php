@@ -11,16 +11,30 @@ class AuthController extends Controller
 {
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
+            'user' => 'required|string|unique:users,user',
             'name' => 'required|string|between:2,100',
+            'phone' => 'required|string|between:2,100',
+            'address' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
-            'password' => 'required|confirmed',
+            'password' => 'required|string|min:8|confirmed|regex:/^(?=.*\d)(?=.*[A-Z]).+$/',
+        ],[
+            'user.required'=>'Se requiere un usuario',
+            'name.required'=>'Se requiere un nombre',
+            'phone.required'=>'Se requiere un teléfono',
+            'address.required'=>'Se requiere una dirección',
+            'user.unique'=>'El usuario ya existe',
+            'email.unique'=>'El email ya existe',
+            'password.min'=>'La contraseña debe tener minimo 8 caracteres',
+            'password.regex' => 'La contraseña debe tener al menos una letra mayuscula y un número.'
+            
+            
         ]);
         if ($validator->fails()){
-            return response()->json($validator->errors(), 400);
+            return response()->json(['error'=>$validator->errors()->first()]);
         }
         $user = User::create(array_merge(
-                    $validator->validated(),
-                    ['password' =>bcrypt($request->password)]
+                $validator->validated(),
+                ['password' =>bcrypt($request->password)]
         ));
     }
     public function login(Request $request){

@@ -22,30 +22,13 @@ const routes = [
             {
                 path: 'home',
                 name: 'home-view',
-                component: () => import(/* webpackChunkName: "FacturasView" */ '../views/HomeView.vue'),
+                component: () => import(/* webpackChunkName: "HomeView" */ '../views/HomeView.vue'),
             },
             {
-                path: 'facturas',
-                name: 'facturas-view',
-                component: () => import(/* webpackChunkName: "FacturasView" */ '../views/FacturasView.vue'),
-            },
-            {
-                path: 'crear_factura',
-                name: 'createfactura',
-                component: () => import(/* webpackChunkName: "CreateFacturaView" */ '../views/CreateFacturaView.vue'),
-                
-            },
-            {
-                path: 'editar_factura/:id',
-                name:'editfactura',
-                component: () => import(/* webpackChunkName: "EditFacturaView" */ '../views/EditFacturaView.vue'),
-                props: ( route ) => {
-                    return {
-                        id: route.params.id
-                    }
-                }
-            },
-            
+                path: 'tareas',
+                name: 'tareas-view',
+                component: () => import(/* webpackChunkName: "TasksView" */ '../views/TasksView.vue'),
+            },   
         ]
     },
     { 

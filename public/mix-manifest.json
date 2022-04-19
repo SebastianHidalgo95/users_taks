@@ -6,5 +6,7 @@
     "/js/FacturasView.js": "/js/FacturasView.js",
     "/js/CreateFacturaView.js": "/js/CreateFacturaView.js",
     "/js/EditFacturaView.js": "/js/EditFacturaView.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/HomeView.js": "/js/HomeView.js",
+    "/js/TasksView.js": "/js/TasksView.js"
 }

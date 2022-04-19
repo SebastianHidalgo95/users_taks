@@ -7,7 +7,9 @@ export const login = async ({commit}, user ) => {
         .then( resp => {
             const token = 'Bearer'+ resp.data.access_token
             const user = resp.data.user
+            console.log(token)
             localStorage.setItem('token',token)
+            
             console.log(user)
             axios.defaults.headers.common['Authorization'] = token
             commit('authSuccess', token, user)
@@ -36,16 +38,22 @@ export const register = ({commit}, user)=> {
       commit('authRequest')
       axios({url: 'register', data: user, method: 'POST' })
       .then(resp => {
-        const token = 'Bearer '+resp.data.access_token
-        const user = resp.data.user
-        localStorage.setItem('token', token)
-        axios.defaults.headers.common['Authorization'] = token
-        commit('authSuccess', token, user)
-        commit('handleError', '')
-        resolve(resp)
+        if(resp.data.error){
+            localStorage.removeItem('token')
+            resolve({error: resp.data.error})
+        } else {
+            const token = 'Bearer '+resp.data.access_token
+            const user = resp.data.user
+            localStorage.setItem('token', token)
+            axios.defaults.headers.common['Authorization'] = token
+            commit('authSuccess', token, user)
+            commit('handleError', '')
+            resolve(resp)
+        }
       })
       .catch(error => {
         localStorage.removeItem('token')
+        console.log(error.error)
         reject(error)
       })
     })

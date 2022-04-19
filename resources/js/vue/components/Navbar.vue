@@ -6,10 +6,10 @@
                     height="24"
                     alt="logo Vue"
                     class="d-inline-block aline-text-top mx-2" />
-                Facturación
+                Organizador
             </a>
             <router-link :to="{ name: 'home-view'}">Home</router-link>
-            <router-link :to="{ name: 'facturas-view'}">Facturas</router-link>
+            <router-link :to="{ name: 'tareas-view'}">Tareas</router-link>
         </div>
         
         <div class="mr-auto">

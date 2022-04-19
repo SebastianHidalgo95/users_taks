@@ -21,9 +21,8 @@ Route::post('login','App\Http\Controllers\AuthController@login');
 
 Route::group(['middleware'=>'jwt.verify'], function(){
     Route::get('user','App\Http\Controllers\AuthController@getUser');
-    Route::post('get_facturas','App\Http\Controllers\FacturaController@getFacturas');
-    Route::post('get_lastfactura','App\Http\Controllers\FacturaController@getLastFactura');
-    Route::post('create_factura','App\Http\Controllers\FacturaController@createFactura');
-    Route::post('edit_factura','App\Http\Controllers\FacturaController@editFactura');
-    Route::post('get_factura','App\Http\Controllers\FacturaController@getFactura');
+    Route::post('get_tasks','App\Http\Controllers\TaskController@getTasks');
+    Route::post('create_task','App\Http\Controllers\TaskController@createTask');
+    Route::post('update_task','App\Http\Controllers\TaskController@updateTask');
+    Route::post('get_statistics','App\Http\Controllers\TaskController@getStatistics');
 });

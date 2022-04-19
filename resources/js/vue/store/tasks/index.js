@@ -3,7 +3,7 @@ import * as actions from './actions'
 import * as getters from './getters'
 import * as mutations from './mutations'
 
-const facturas = {
+const tasks = {
     namespaced: true,
     actions,
     getters,
@@ -11,4 +11,4 @@ const facturas = {
     state,
 }
 
-export default facturas
+export default tasks
