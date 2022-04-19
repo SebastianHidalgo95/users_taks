@@ -72,10 +72,6 @@ php artisan migrate:fresh
 ```
 Los usuarios deben registrarse mediante la opcion de registro accedida desde el login
 
-### Modelo de datos
-
-<p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/SebastianHidalgo95/test-facturacion/main/resources/assets/datamodel.png" width="400"></a></p>
-
 ### Generar la JWT KEY
 Es necesario crear una JWT Key que se almacenara como JWT_SECRET en su env (variables de entorno)
 
